@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, useState } from "react";
 import BannerImageComp from "./BannerImageComp";
 import EditBannerTemplateBs from "./EditBannerTemplateBs";
