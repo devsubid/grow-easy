@@ -1,25 +1,24 @@
 "use client";
 
-import Banner from "@/components/Banner";
 import { BannerCanvasProps } from "@/types/banner";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Banner = dynamic(() => import("@/components/Banner"), { ssr: false });
 
 const Home = () => {
   const [q, setQ] = useState("");
-
   const [banners, setBanners] = useState<{
     [key: string]: BannerCanvasProps[];
   } | null>(null);
   const [selectOption, setSelectOption] = useState<string | null>(null);
 
   const onGenerate = async () => {
-    const res = await axios.get<BannerCanvasProps[]>(
-      "http://localhost:3000/banners"
-    );
+    const res = await axios.get<{ banners: BannerCanvasProps[] }>("/db.json");
     setBanners(
-      Object.groupBy(res.data, ({ size }) => size) as Record<
+      Object.groupBy(res.data.banners, ({ size }) => size) as Record<
         string,
         BannerCanvasProps[]
       >

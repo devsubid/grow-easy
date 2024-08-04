@@ -56,8 +56,8 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<ImageType[]>([]);
   const onGenerate = async () => {
-    const res = await axios.get<ImageType[]>("http://localhost:3000/images");
-    setImages(res.data);
+    const res = await axios.get<{ images: ImageType[] }>("/db.json");
+    setImages(res.data.images);
   };
 
   useEffect(() => {

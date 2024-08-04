@@ -16,13 +16,13 @@ body {
 .konvajs-content {
   max-width: 100% !important;
   max-height: 100% !important;
+}
 
-  & canvas {
-    position: static;
-    width: 100% !important;
-    height: fit-content !important;
-    object-fit: contain;
-  }
+.konvajs-content canvas {
+  position: static;
+  width: 100% !important;
+  height: fit-content !important;
+  object-fit: contain;
 }
 
 dialog::backdrop {
